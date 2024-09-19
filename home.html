@@ -12,7 +12,7 @@
     <div class="mockup-phone">
         <div class="camera"></div>
         <div class="display">
-          <div class="artboard artboard-demo phone-1">
+          <div class="artboard artboard-demo phone-2">
 <!-- available balance-->
 <div class="stats shadow">
     <div class="stat">
@@ -25,6 +25,7 @@
    <div>
     <button id="add-money-show" class="btn">add money</button>
     <button id="cash-out-show" class="btn">cash out</button>
+    <button id="transaction-show" class="btn">transaction</button>
    </div>
    <div class="divider"></div>
    <!-- add money from -->
@@ -69,58 +70,18 @@
   </form>
 </div>
 <!-- cash out end -->
-
+<!-- transaction start -->
+ <div class="hidden" id="transaction-history">
+  <h1>transaction history</h1>
+ </div>
+<!-- transaction end -->
           </div>
         </div>
       </div>
 </main>
-<script>
-  // add money  js start
-document.getElementById('btn-add-money').addEventListener('click',function(event){
-event.preventDefault();
-const addMoneyInput =document.getElementById('add-amount-input').value;
-const pinInput= document.getElementById('input-pin').value;
-const available =document.getElementById('available-money').innerText;
-if(pinInput === '1234' && addMoneyInput >= 20){
-const availableNumber =parseFloat(available);
-const addMoneyNumber =parseFloat(addMoneyInput);
-
-const newMoney =addMoneyNumber + availableNumber;
-document.getElementById('available-money').innerText= newMoney;
-}
-else{
-    alert('invalid add money try again later')
-}
-
-})
-// add money js end
-// cash out money start
-document.getElementById('btn-cash-out').addEventListener('click', function(event){
-  event.preventDefault();
-  const cashOut =document.getElementById('cash-out-input').value ;
-  const cashOutPin =document.getElementById('input-pin-cashOut').value ;
-  const availableMoney =document.getElementById('available-money').innerText;
-  const cashOutNumber =parseFloat(cashOut);
-  const availableNumber =parseFloat(availableMoney)
-  if(cashOutPin === '1234'){
-const newBalance = availableNumber - cashOutNumber;
-document.getElementById('available-money').innerText = newBalance;
-  }
-  else{
-    alert('we found a issue, try again later')
-  }
-})
-// toggle feature 
-document.getElementById('add-money-show').addEventListener('click',function(){
-document.getElementById('add-money-from').classList.remove('hidden')
-document.getElementById('cash-out-from').classList.add('hidden')
-})
-document.getElementById('cash-out-show').addEventListener('click',function(){
-  document.getElementById('cash-out-from').classList.remove('hidden');
-  document.getElementById('add-money-from').classList.add('hidden')
-})
-
-
-</script>
+<script src="./js/userAction.js"></script>
+<script src="./js/utitlites.js"></script>
+<script src="./js/cashOut.js"></script>
+<script src="./js/transaction.js"></script>
 </body>
 </html>
